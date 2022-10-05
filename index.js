@@ -1,11 +1,12 @@
 const canvas = document.querySelector("#board");
 const ctx = canvas.getContext("2d"); 
 const show = document.querySelector("#show");
-
-//Clear variable added
 const clear = document.querySelector("#clear");
+const reset = document.querySelector("#reset");
+const start = document.querySelector("#start");
 
 
+let stop = true;
 
 
 const GRID_WIDTH =  500;             
@@ -18,18 +19,23 @@ canvas.width = GRID_WIDTH;
 canvas.height = GRID_HEIGHT;
 
 
-//Make a function to create the grid , the function will recive 2 parameters: Columns and Rows.
-let grid= [[0,0,0,0,0,0,0,0,0,1],
-          [0,0,0,0,0,0,0,0,1,0],
-          [0,0,0,0,0,0,0,1,0,0],
-          [0,0,0,0,0,0,1,0,0,0],
-          [0,0,0,0,0,1,0,0,0,0],
-          [0,0,0,0,1,0,0,0,0,0],
-          [0,0,0,1,0,0,0,0,0,0],
-          [0,0,1,0,0,0,0,0,0,0],
-          [0,1,0,0,0,0,0,0,0,0],
-          [1,0,0,0,0,0,0,0,0,0]];
+//Create a simetrical grid, the function will recive 2 parameters who set the Columns and Rows.
+function seedGen(col, row) {
+  let grid = [];
+  
+  for(let x = 0; x < col; x++){
+    let nest = [];
+    for(let y = 0; y < row; y++){
+      let num = Math.floor(Math.random() * (2));
+      nest.push(num);
+    }
+    grid.push(nest);
+  }
 
+  return grid;
+};
+
+let grid = seedGen(COL, ROW)
 
 function drawGrid(grid) {
 
@@ -54,19 +60,38 @@ function drawGrid(grid) {
 };
 drawGrid(grid);
 
+function game(grid) {
+  let newGrid = [];
+  if (stop) {
+    clearInterval(gameId);
+  }
+  // Game Logic
+  console.log("is working")
 
-show.addEventListener('click', () =>{
-  grid = [[0,0,0,0,0,0,0,0,0,1],
-          [0,0,0,0,0,0,0,0,1,0],
-          [0,0,0,0,0,0,0,1,0,0],
-          [0,0,0,0,0,0,1,0,0,0],
-          [0,0,0,0,0,1,0,0,0,0],
-          [0,0,0,0,1,0,0,0,0,0],
-          [0,0,0,1,0,0,0,0,0,0],
-          [0,0,1,0,0,0,0,0,0,0],
-          [0,1,0,0,0,0,0,0,0,0],
-          [1,0,0,0,0,0,0,0,0,0]];
+
+  drawGrid(newGrid);
+};
+
+reset.addEventListener('click', () =>{
+  if (!stop) {
+    stop = true;
+    start.innerHTML = "START"
+  };
+
+  let grid = seedGen(COL, ROW);
   drawGrid(grid);
+
+});
+
+start.addEventListener('click', () =>{
+  if (stop) {
+    stop = false;
+    start.innerHTML = "STOP"
+    let gameId = setInterval(game, 1000, grid);
+  } else {
+    stop = true;
+    start.innerHTML = "START"
+  };
 });
 
 clear.addEventListener('click', () =>{
