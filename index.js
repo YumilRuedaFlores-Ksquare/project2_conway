@@ -1,7 +1,10 @@
 const canvas = document.querySelector("#board");
 const ctx = canvas.getContext("2d"); 
+const show = document.querySelector("#show");
+const clear = document.querySelector("#clear");
 const reset = document.querySelector("#reset");
 const start = document.querySelector("#start");
+
 
 let stop = true;
 
@@ -89,6 +92,20 @@ start.addEventListener('click', () =>{
     stop = true;
     start.innerHTML = "START"
   };
+});
+
+clear.addEventListener('click', () =>{
+    grid = [[0,0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0,0]];
+    drawGrid(grid);
 });
 
 let mouseGrid = {
