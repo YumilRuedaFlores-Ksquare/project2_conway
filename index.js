@@ -217,7 +217,7 @@ randomize.addEventListener('click', () =>{
 });
 
 
-//Adding the interaction with the clear button
+//Adding the interaction with the clear button test1
 clear.addEventListener('click', () =>{
   grid = emptyGrid(COL,ROW);
   drawGrid(grid);
