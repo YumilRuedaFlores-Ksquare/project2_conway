@@ -92,7 +92,7 @@ function checkAlive(grid){
           // Count ofpopulation
           numAlive = check(x - 1, y - 1) + check(x, y - 1) + check(x + 1, y - 1) + check(x - 1, y) + check(x + 1, y) + check(x - 1, y + 1) + check(x, y + 1) + check(x + 1, y + 1);
           gridAlive[x][y] = numAlive;
-          console.log(numAlive);
+          
           
       }
   }
@@ -216,6 +216,14 @@ randomize.addEventListener('click', () =>{
 
 });
 
+
+//Adding the interaction with the clear button
+clear.addEventListener('click', () =>{
+  grid = emptyGrid(COL,ROW);
+  drawGrid(grid);
+  count =0;
+  updateCounter(count);
+});
 
 
 input.addEventListener('change', (event) => {
