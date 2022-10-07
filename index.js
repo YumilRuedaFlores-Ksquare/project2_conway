@@ -1,5 +1,7 @@
 const canvas = document.querySelector("#board");
 const ctx = canvas.getContext("2d"); 
+const show = document.querySelector("#show");
+const clear = document.querySelector("#clear");
 const reset = document.querySelector("#reset");
 const start = document.querySelector("#start");
 const randomize = document.querySelector("#randomize");
@@ -7,6 +9,7 @@ const input =  document.querySelector("#quantity");
 const clear = document.querySelector("#clear");
 
 const textLevel = document.querySelector('.generationNo');
+
 
 let stop = true;
 let gameId = 0;
@@ -172,6 +175,20 @@ start.addEventListener('click', () =>{
     stop = true;
     start.innerHTML = "START"
   };
+});
+
+clear.addEventListener('click', () =>{
+    grid = [[0,0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0,0]];
+    drawGrid(grid);
 });
 
 let mouseGrid = {
